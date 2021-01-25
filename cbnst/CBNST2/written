@@ -1,0 +1,28 @@
+f(x) is a continuous function in interval [a, b]
+
+@==> if (f(a) * f(b) > 0)==> try again.
+
+@==> if(f(a) * f(b)  ==0 )==> if
+{
+    (f(a)==0)
+       a is root
+    }  
+    else
+    {
+      b is root
+    } 
+
+@==>if(f(a) * f(b) <0)==> correct interval.
+
+
+@==>f(a) * f(b) < 0
+Steps:
+
+Find middle point c= (a + b)/2 .
+If f(c) == 0, then c is the root of the solution.
+Else f(c) != 0
+  If value f(a)*f(c) < 0 then root lies between a and c. So we recur for a and c
+   Else If f(b)*f(c) < 0 then root lies between b and c. So we recur b and c.
+    Else given function doesn’t follow one of assumptions.
+
+

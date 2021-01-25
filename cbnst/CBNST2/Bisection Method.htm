@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0116)https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/bisection.html -->
+<html><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" id="__tmpScript-573158207" data-added-by-two-seven="1">(function() {
+    window.twoseven = {};
+  })();</script><script type="text/javascript" id="__tmpScript-776269537" data-added-by-two-seven="1">(function() {
+    window.twoseven.waitForDOMNode = async function waitForDOMNode(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const r=new MutationObserver(async o=>{for(const a of o)if("childList"===a.type){const o=Array.from(a.addedNodes),c=await i({type:n,value:s},o,t);if(c)return r.disconnect(),e(c)}});r.observe(t,{childList:!0,subtree:!0})})};
+  })();</script><script type="text/javascript" id="__tmpScript-907841174" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.reportError = function reportError(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-113404417" data-added-by-two-seven="1">(function() {
+    
+  window.twosevenHmsToSecondsOnly = function(str) {
+      var p = str.split(':'),
+          s = 0, m = 1;
+
+      while (p.length > 0) {
+          s += m * parseInt(p.pop(), 10);
+          m *= 60;
+      }
+
+      return s;
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-20448200" data-added-by-two-seven="1">(function() {
+    window.twosevenExtLog = function twosevenExtLog(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+  })();</script><script type="text/javascript" id="__tmpScript-971283898" data-added-by-two-seven="1">(function() {
+    
+  document.twosevenGET = function(url, callback) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+        if (xmlhttp.status == 200) {
+          callback(null, xmlhttp.responseText);
+        } else {
+          callback('something else other than 200 was returned', '');
+        }
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  };
+;
+  })();</script><script type="text/javascript" id="__tmpScript-198962069" data-added-by-two-seven="1">(function() {
+    
+  window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-851897366" data-added-by-two-seven="1">(function() {
+    window.twoseven.postTo = async function postTo(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+  })();</script><script type="text/javascript" id="__tmpScript-554170059" data-added-by-two-seven="1">(function() {
+    window.tsExtGetPostTo = function tsExtGetPostTo(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+  })();</script><script type="text/javascript" id="__tmpScript-82241923" data-added-by-two-seven="1">(function() {
+    window.tsExtGetPostToParent = function tsExtGetPostToParent(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+  })();</script><script type="text/javascript" id="__tmpScript-264604193" data-added-by-two-seven="1">(function() {
+    window.twoseven.postResponse = async function postResponse(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+  })();</script><script type="text/javascript" id="__tmpScript-586178630" data-added-by-two-seven="1">(function() {
+    window.twoseven.postToParent = async function postToParent(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+  })();</script><script type="text/javascript" id="__tmpScript-189221012" data-added-by-two-seven="1">(function() {
+    window.twoseven.postToTop = async function postToTop(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+  })();</script><script type="text/javascript" id="__tmpScript-823781425" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+  window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-85390444" data-added-by-two-seven="1">(function() {
+    
+  function attachHistoryListeners(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+  attachHistoryListeners()
+;
+  })();</script><script type="text/javascript" id="__tmpScript-425479492" data-added-by-two-seven="1">(function() {
+    window.twoseven.once = function once(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+  })();</script><script type="text/javascript" id="__tmpScript-557873483" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.isOnTwoSevenTab = async () => {
+    const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+    return result
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-139922709" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.isPaused = async () => {
+    const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+    return result
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-146399680" data-added-by-two-seven="1">(function() {
+    
+      const modal = document.querySelector('.twoseven-ext-tab-media-modal')
+      const modalCloseBtn = modal.querySelector('.close')
+      function closeModal () {
+        modal.style.display = 'none'
+        const frame = document.querySelector('#twoseven-ext-tab-media-iframe').contentWindow
+        frame.postMessage({
+          __evt_name: 'modal-hide'
+        }, '*')
+      }
+      modalCloseBtn.onclick = closeModal
+
+      window.onmessage = function (e) {
+        if (e.data.__evt_name === 'modal-hide') {
+          closeModal()
+        }
+      }
+
+      window.twoseven.closeTabMediaModal = closeModal
+
+      window.onclick = function (e) {
+        if (e.target.id === 'twoseven-ext-tab-media-modal' && modal.style.display === 'block') {
+            closeModal()
+        }
+      }
+    ;
+  })();</script></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta name="GENERATOR" content="Mozilla/4.77 [en] (Win98; U) [Netscape]">
+   <meta name="Author" content="Dr. Yedida VSS Sanyasiraju">
+   <title>Bisection Method</title>
+<style>A:hover{color=#ff0000}</style>
+<script>
+function srch(page){
+if(page==""){alert("enter search string");}
+else{
+window.open('../../../base.html#'+page.toLowerCase(),'','width=300,height=75,scrollbars=yes');
+}
+}
+</script>
+<script>
+function tip(){
+popup=window.open('','','toolbar=no,width=350,height=100,top=0,left=0');
+popup.document.open();
+popup.document.writeln("<html><head><title>the intermediate value theorem for continuous functions </title></head><body bgcolor=#ffffee>");
+popup.document.writeln("<font size=2>Any continuous function f (x) in the interval [a,b] which satisfies f (a) * f (b) < 0 must have a zero &nbsp;&nbsp;in the interval [a,b] .");
+popup.document.writeln("</font></body></html>");
+popup.document.close();
+}
+function tipclose(){
+popup.window.close();
+}
+function hlts(){
+hlt=window.open('','','toolbar=no,width=350,height=270,top=0,left=0');
+hlt.document.open();
+hlt.document.writeln("<html><head><title>highlights</title></head><body bgcolor=#ffffee>");
+hlt.document.writeln("<font size=2>Error after 'n' Iterations < | (b-a)/2<sup>n</sup> | <br><br><u><b>Advantages</b></u><ul><li>Iteration scheme is simple to implement.</li><li>Iteration process always converges for any continuous function f(x).</li></ul><u><b>Disadvantages</b></u><ul><li>Convergence process is slow.</li><li>Always one has to find the interval [a,b] which brackets the zero of f(x)= 0 such that f(a) * f(b) is less than zero.</li></ul>.");
+hlt.document.writeln("</font></body></html>");
+hlt.document.close();
+}
+function hltsclose(){
+hlt.window.close();
+}
+</script>
+<link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle"></head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#0000EE" alink="#FF0000" background="./Bisection Method_files/bg.gif" nosave="" width="100%" height="100%">
+
+<div align="right"><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/bisection.html" onclick="window.close()"><img src="./Bisection Method_files/close.gif" nosave="" border="1" height="14" width="16"></a></div>
+
+<center><br><table border="10" cols="1" width="100%" bgcolor="#FFFFFF">
+<caption>
+<center></center></caption><tbody>
+</tbody>
+
+
+<tbody><tr align="LEFT" valign="TOP">
+<td align="LEFT" valign="TOP">
+<center><b><font size="+2">BISECTION METHOD</font></b></center>
+
+<blockquote>Bisection method is the simplest among all the numerical schemes
+to solve the transcendental equations. This scheme is based on the <i><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/bisection.html" onmouseover="tip()" onmouseout="tipclose()">intermediate
+value theorem for continuous functions</a></i><b><font face="Century Gothic">
+.</font></b>
+<p align="JUSTIFY">Consider a transcendental equation f (x) = 0&nbsp; which has a zero in the interval [a,b] and f (a) * f (b) &lt; 0. 
+Bisection scheme computes the zero, say c, by repeatedly halving the interval [a,b].
+
+That is, starting with&nbsp; </p><center>c = (a+b) / 2</center>
+<p align="JUSTIFY">the interval [a,b] is replaced either with [c,b] or with [a,c] depending
+on the sign of f (a) * f (c) . This process is continued until the zero
+is obtained. Since the zero is obtained numerically the value of c may
+not exactly match with all the decimal places of the analytical solution of f (x) = 0 in the interval [a,b]. Hence any one of the following mechanisms can be used to stop the bisection iterations <b>:</b></p></blockquote>
+
+<blockquote>
+<li>
+<p align="JUSTIFY">C1. Fixing a priori the total number of bisection iterations N i.e., the length of the interval or the maximum error after N iterations in this case is less than | b-a | / 2<sup>N</sup>.</p></li>
+
+<li>
+<p align="JUSTIFY">C2. By testing the condition&nbsp; | c<sub>i</sub> - c<sub> i-1</sub>|
+(where i are the iteration number) less than some tolerance limit, say
+epsilon, fixed a priori.&nbsp;</p></li>
+
+<li>
+<p align="JUSTIFY">C3. By testing the condition | f (c<sub>i</sub> ) | less
+than some tolerance limit alpha again fixed a priori.</p></li>
+</blockquote>
+
+<center><br><table border="5" cols="1" width="79%">
+<caption>
+<center></center></caption><tbody>
+</tbody>
+
+
+<tbody><tr>
+<td>
+<center><b><u>Algorithm - Bisection Scheme</u></b></center>
+
+<p>Given a function f (x) continuous on an interval [a,b] and f (a)
+* f (b) &lt; 0&nbsp;
+<br>Do&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = (a+b)/2&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if f (a) * f (c) &lt; 0 then&nbsp;
+b = c&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else&nbsp; a = c&nbsp;
+<br>while (none of the convergence criteria C1, C2 or C3 is satisfied)</p></td>
+</tr>
+</tbody></table></center>
+
+<br>&nbsp;
+<blockquote><b><font color="#FF0000">Numerical Example :</font></b>
+<br><img src="./Bisection Method_files/exp0.JPG" alt="exp0.jpg for 3x+sin[x]-exp[x]" nosave="" height="165" width="238" align="RIGHT">Find
+a root of&nbsp;&nbsp; f (x) = 3x + sin(x) - exp(x) = 0.&nbsp;
+<p>The graph of this equation is given in the figure. 
+</p><p> Its clear from the graph that there are two roots, one lies between&nbsp; 0&nbsp; and&nbsp; 0.5&nbsp; and the other lies between 1.5 and 2.0. </p><p> Consider&nbsp; the function&nbsp; f (x)&nbsp; in&nbsp;&nbsp; the&nbsp;&nbsp; interval&nbsp; [0, 0.5]&nbsp; since&nbsp; f (0) * f (0.5) is less than zero. 
+</p><p> Then the bisection iterations are given by</p></blockquote>
+
+<center><br><table border="" cellspacing="0" cellpadding="0" width="59%">
+<caption>
+<center></center></caption><tbody>
+</tbody>
+
+
+<tbody><tr>
+<td>
+<center>Iteration&nbsp;
+<br>No.</center>
+</td>
+
+<td>
+<center>a</center>
+</td>
+
+<td>
+<center>b</center>
+</td>
+
+<td>
+<center>c</center>
+</td>
+
+<td>
+<center>f(a) * f(c)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>0.5</center>
+</td>
+
+<td>
+<center>0.25</center>
+</td>
+
+<td>
+<center>0.287 (+ve)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>0.25</center>
+</td>
+
+<td>
+<center>0.5</center>
+</td>
+
+<td>
+<center>0.393</center>
+</td>
+
+<td>
+<center>-0.015 (-ve)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>0.65</center>
+</td>
+
+<td>
+<center>0.393</center>
+</td>
+
+<td>
+<center>0.34</center>
+</td>
+
+<td>
+<center>9.69 E-3 (+ve)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>0.34</center>
+</td>
+
+<td>
+<center>0.393</center>
+</td>
+
+<td>
+<center>0.367</center>
+</td>
+
+<td>
+<center>-7.81 E-4 (-ve)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>5</center>
+</td>
+
+<td>
+<center>0.34</center>
+</td>
+
+<td>
+<center>0.367</center>
+</td>
+
+<td>
+<center>0.354</center>
+</td>
+
+<td>
+<center>8.9 E-4 (+ve)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>6</center>
+</td>
+
+<td>
+<center>0.354</center>
+</td>
+
+<td>
+<center>0.367</center>
+</td>
+
+<td>
+<center>0.3605</center>
+</td>
+
+<td>
+<center>-3.1 E-6 (-ve)</center>
+</td>
+</tr>
+</tbody></table></center>
+
+<blockquote>So one of the roots of 3x + sin(x) - exp(x) = 0 is approximately
+0.3605.</blockquote>
+
+<center><table border="" width="550" bgcolor="#006600">
+<caption><a name="problems"></a><b><font color="#006600">Worked out problems</font></b></caption>
+
+<tbody><tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 1</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of cos(x) - x * exp(x) = 0</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example1.html#exp1">Solution</a></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 2</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of x<sup>4</sup>-x-10 = 0</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example2.html#exp2">Solution</a></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 3</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of x-exp(-x) = 0</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example3.html#exp3">Solution</a></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 4</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of exp(-x) * (x<sup>2</sup>-5x+2)
++ 1= 0</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example4.html#exp4">Solution</a></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 5</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of x-sin(x)-(1/2)= 0</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example5.html#exp5">Solution</a></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;<font color="#FF0000">Exapmple 6</font></td>
+
+<td>&nbsp;<font color="#FFCC00">Find a root of exp(-x) = 3log(x)</font></td>
+
+<td bgcolor="#FFFFFF">&nbsp;<b><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example6.html#exp6">Solution</a></b></td>
+</tr>
+
+<tr>
+<td colspan="3" bgcolor="#FFFFFF">
+<center><b><font color="#006600"><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/example6.html#exercise%20problems">Problems
+to workout</a></font></b></center>
+</td>
+</tr>
+</tbody></table></center>
+
+<center>
+<p><a name="high"></a><b><i><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/bisection/bisection.html#high" onmouseover="hlts()" onmouseout="hltsclose()">Highlights
+of the scheme</a></i></b></p></center>
+
+<p><br>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br><table cols="1" width="100%">
+<caption></caption><tbody>
+</tbody>
+
+<tbody><tr>
+<td><font size="+1"><font color="#660000">Work out with the </font><b><u><blink><font color="#FF0000">Bisection
+method</font></blink></u></b><font color="#660000"> here</font></font>
+<p><applet codebase="../../../applets" code="bisection.class" width="100%" height="70"></applet>
+<br><font size="-1"><font color="#FF0000">Note : </font><font color="#660000">Please
+enter equation like 3x+sin[x]-exp[x]. Use "[ ]" brackets for transcendentals
+and "( )" for others eg., 3x+sin[(x+2)]+(3/4). 'a' and 'b' are the limits
+within which you are going to find the root. Few examples of how to enter
+equations are given below ...</font></font>
+</p><center><font size="-1"><font color="#FF0000">(i) </font><font color="#660000">exp[-x]*(x^2+5x+2)+1&nbsp;</font><font color="#FF0000">
+(ii) </font><font color="#660000">x^4-x-10&nbsp;</font><font color="#FF0000">
+(iii) </font><font color="#660000">x-sin[x]-(1/2)&nbsp; </font><font color="#FF0000">(iv)</font><font color="#660000">
+exp[(-x+2-1-2+1)]*(x^2+5x+2)+1</font></font></center>
+</td>
+</tr>
+</tbody></table>
+</p></td>
+</tr>
+
+<tr>
+<td>
+<center><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/root-bracketing-method.html"><img src="./Bisection Method_files/back.gif" nosave="" border="0" height="26" width="149"></a><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/bracketing%20methods/regula-falsi/regula-falsi.html"><img src="./Bisection Method_files/next.gif" nosave="" border="0" height="26" width="151"></a></center>
+</td>
+</tr>
+</tbody></table></center>
+
+<hr width="100%">
+<center><font size="-1"><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/transcendental/transcendental.html">Solution of Transcendental
+Equations</a> | <a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/lae/lae.html">Solution of Linear System
+of Algebraic Equations</a> | <a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/interpolation/interpolation.html">Interpolation
+&amp; Curve Fitting</a></font>
+<br><font size="-1"><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/nd-ni/nd-ni.html">Numerical Differentiation
+&amp; Integration</a> | <a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/ode/ode.html">Numerical Solution
+of Ordinary Differential Equations</a></font>
+<br><font size="-1"><a href="https://mat.iitm.ac.in/home/sryedida/public_html/caimna/pde/pde.html">Numerical Solution of
+Partial Differential Equations</a></font>
+<br><form name="f21" onsubmit="srch(f21.txt.value)"><input type="text" size="14" name="txt"><input type="submit" value="search"></form></center>
+
+
+
+<div>
+    <div id="twoseven-ext-tab-media-modal" class="twoseven-ext-tab-media-modal" style="display: none;">
+      <!-- Modal content -->
+      <div class="twoseven-ext-tab-media-modal-content">
+        <div class="iframe-container" style="height: 100%; width: 100%;">
+          <span class="close">×</span>
+        </div>
+      </div>
+    </div></div><div class="betternet-wrapper"></div></body></html>
